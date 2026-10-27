@@ -101,7 +101,13 @@ Replay training on nuPlan bins, controlling only the SDC:
 puffer train puffer_drive \
     env.map_dir=data/nuplan_mini_train \
     env.num_maps=250 \
+    env.allow_map_subset=true \
     env.simulation_mode=replay \
     env.control_mode=control_sdc_only \
+    env.dt=0.1 \
     env.scenario_length=200
 ```
+
+`env.allow_map_subset=true` is needed whenever `num_maps` is smaller than the number of bins in `map_dir`
+(the mini sets hold ~3.6k), and `env.dt=0.1` matches the bins' 10 Hz log rate (the default `dt` is 0.3 and
+replay mode does not check it).
