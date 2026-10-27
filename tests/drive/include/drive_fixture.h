@@ -16,6 +16,11 @@ static inline const char *drive_nuplan_map(void) {
         "/pufferlib/resources/drive/binaries/nuplan/nuplan__00018a38-0063-54d1-a3c1-1ab931a4a1e5.bin";
 }
 
+// One navsim scene: 20 s at 10 Hz, 115 agents, 11 traffic lights, LANEWID1 lane widths
+static inline const char *drive_navsim_map(void) {
+    return DRIVE_TEST_REPO_ROOT "/pufferlib/resources/drive/binaries/navsim/navsim__b214f8e744075e96.bin";
+}
+
 static inline char *drive_test_strdup(const char *src) {
     size_t n = strlen(src) + 1;
     char *dst = (char *) malloc(n);

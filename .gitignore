@@ -185,6 +185,10 @@ pufferlib/resources/drive/binaries/carla/.DS_Store
 # SDC-replay fixture map used by tests/unit_tests/test_terminate_on_goal.py
 !pufferlib/resources/drive/binaries/sdc_replay_test/
 !pufferlib/resources/drive/binaries/sdc_replay_test/**
+# navsim fixture (one navsim-mini scene converted by closed-loop-e2e, docs/navsim_data.md), used by
+# tests/drive/test_drive_env_smoke.c and tests/unit_tests/test_navsim_fixture.py
+!pufferlib/resources/drive/binaries/navsim/
+!pufferlib/resources/drive/binaries/navsim/**
 
 # Compiled drive binary in root
 /drive

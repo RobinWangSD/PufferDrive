@@ -46,6 +46,14 @@ static int test_nuplan_replay_load_step_log(void) {
     return run_case("nuplan-replay", drive_nuplan_map(), SIMULATION_MODE_REPLAY, 1);
 }
 
+static int test_navsim_gigaflow_load_step_log(void) {
+    return run_case("navsim-gigaflow", drive_navsim_map(), SIMULATION_MODE_GIGAFLOW, 32);
+}
+
+static int test_navsim_replay_load_step_log(void) {
+    return run_case("navsim-replay", drive_navsim_map(), SIMULATION_MODE_REPLAY, 1);
+}
+
 static int test_nuplan_replay_create_only_controlled(void) {
     srand(7);
     Drive env = drive_test_env_config(drive_nuplan_map(), SIMULATION_MODE_REPLAY, 4, 0);
@@ -252,6 +260,8 @@ int main(void) {
     RUN_TEST(test_nuplan_gigaflow_load_step_log);
     RUN_TEST(test_nuplan_replay_load_step_log);
     RUN_TEST(test_nuplan_replay_create_only_controlled);
+    RUN_TEST(test_navsim_gigaflow_load_step_log);
+    RUN_TEST(test_navsim_replay_load_step_log);
     RUN_TEST(test_truncation_and_episode_log);
     RUN_TEST(test_short_early_reset_flags_and_logs);
     RUN_TEST(test_stagger_first_episode);
