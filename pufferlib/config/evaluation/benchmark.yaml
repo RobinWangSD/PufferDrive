@@ -134,6 +134,52 @@ benchmarks:
       disable_stop_sign_infractions: true
       goal_reach_requires_speed: false
 
+  # navsim scenes (docs/navsim_data.md): one 20 s bin per navsim sample at 10 Hz, converted from the 2 Hz OpenScene
+  # logs by closed-loop-e2e. The navsim "current frame" is step 15 (4 history frames at 2 Hz); the navsim task horizon
+  # is the next 4 s, hence init_step 15 + 40 steps = scenario_length 55 (env.scenario_length=200 on the CLI runs the
+  # whole bin). gt_map goals are spread over the whole 20 s log, so num_goals 5 puts the first goal 3.7 s ahead.
+  # num_maps / num_scenarios = navtest (12,146 samples); the checked-in fixture: env.num_maps=1 eval.num_scenarios=1.
+  - name: navsim_multi
+    seed: 42
+    num_scenarios: 12146
+    env:
+      simulation_mode: replay
+      dt: 0.1
+      num_maps: 12146
+      max_agents_per_env: 256
+      max_scenarios_per_batch: null
+      scenario_length: 55
+      init_step: 15
+      control_mode: control_vehicles
+      init_mode: create_controllable_types
+      replay_expert_agents: 0
+      map_dir: pufferlib/resources/drive/binaries/navsim
+      use_neighbor_cache: false
+      disable_red_light_infractions: true
+      disable_stop_sign_infractions: true
+      goal_reach_requires_speed: false
+      goal_source: gt_map
+      num_goals: 5
+
+  - name: navsim_single
+    seed: 42
+    num_scenarios: 12146
+    env:
+      simulation_mode: replay
+      dt: 0.1
+      num_maps: 12146
+      scenario_length: 55
+      init_step: 15
+      max_scenarios_per_batch: 16
+      control_mode: control_sdc_only
+      map_dir: pufferlib/resources/drive/binaries/navsim
+      use_neighbor_cache: false
+      disable_red_light_infractions: true
+      disable_stop_sign_infractions: true
+      goal_reach_requires_speed: false
+      goal_source: gt_map
+      num_goals: 5
+
   # Closed-loop co-sim against the real external simulators (see
   # pufferlib/ocean/evaluation_utils/cosim_evaluator.py), unlike the
   # benchmarks above which replay pre-baked .bin maps in-process.
