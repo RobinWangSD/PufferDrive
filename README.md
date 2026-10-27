@@ -111,6 +111,10 @@ Place binaries under `pufferlib/resources/drive/binaries/`.
   install, build, and training on the bundled maps) need no AWS account.
 - **nuPlan (replay training/eval):** fetched by the default above, or convert
   yourself — see [`docs/nuplan_data.md`](docs/nuplan_data.md).
+- **navsim (replay training/eval on navtrain / navtest scenes):** no S3 copy;
+  convert with the closed-loop-e2e converter — see
+  [`docs/navsim_data.md`](docs/navsim_data.md) (benchmarks `navsim_single`,
+  `navsim_multi`).
 
 ## Train
 
